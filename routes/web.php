@@ -24,6 +24,10 @@ use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\PpmPublicBiddingController;
 use App\Http\Controllers\PpmSmallValueProcurementController;
+//UNNFIED PPM CONTROLLER
+use App\Http\Controllers\BiddingController;
+use App\Http\Controllers\BidController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,6 +88,21 @@ Route::put('/ppm-small-value-procurements/{id}', [PpmSmallValueProcurementContro
 Route::delete('/ppm-small-value-procurements/{id}', [PpmSmallValueProcurementController::class, 'destroy'])->name(
   'ppm-small-value-procurements.destroy'
 );
+//EXIT
+
+//UNIFIED PPM
+Route::resource('biddings', BiddingController::class);
+Route::resource('bids', BidController::class);
+Route::resource('products', ProductController::class);
+Route::get('/products', [ProductController::class, 'index'])->name('app.products.index');
+Route::get('/app/products/{product}', [ProductController::class, 'show'])->name('app.products.show');
+Route::get('/biddings/{bidding}', [BiddingController::class, 'show'])->name('app.biddings.show');
+Route::get('/biddings/{bidding}', [BiddingController::class, 'show'])->name('biddings.show');
+Route::get('/biddings', [BiddingController::class, 'index'])->name('app.biddings.index');
+Route::get('/biddings/{bidding}', [BiddingController::class, 'show'])->name('biddings.show');
+Route::get('/biddings/{id}', [BiddingController::class, 'show'])->name('app.biddings.show');
+//EXIT PPM
+
 // Purchase
 Route::get('/pages-create-purchase-order', [CreatePurchaseOrder::class, 'index'])->name('pages-create-purchase-order');
 Route::get('/pages-purchase-order-list', [PurchaseOrderList::class, 'index'])->name('pages-purchase-order-list');
