@@ -12,7 +12,7 @@
           <i class="fas fa-gavel fa-3x mb-3"></i>
           <h5 class="card-title">Biddings</h5>
           <p class="card-text">Provide information about ongoing or upcoming bidding processes, including the start and end dates.</p>
-          <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-primary">View Biddings</a>
+          <a href="{{ route('app.biddings.index') }}" class="btn btn-primary">View Biddings</a>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
           <i class="fas fa-user-tie fa-3x mb-3"></i>
           <h5 class="card-title">Vendors</h5>
           <p class="card-text">Display a list of registered vendors with their contact information.</p>
-          <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-primary">View Vendors</a>
+          <a href="{{ route('app.vendors.index') }}" class="btn btn-primary">View Vendors</a>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
           <i class="fas fa-file-contract fa-3x mb-3"></i>
           <h5 class="card-title">Contracts</h5>
           <p class="card-text">Show the status of contracts resulting from successful bidding processes.</p>
-          <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-primary">View Contracts</a>
+          <a href="{{ route('app.bids.index') }}" class="btn btn-primary">View Contracts</a>
         </div>
       </div>
     </div>

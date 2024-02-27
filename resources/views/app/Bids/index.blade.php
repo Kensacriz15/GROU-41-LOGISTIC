@@ -1,13 +1,18 @@
-@extends('layouts/layoutMaster')
+@extends('layouts.layoutMaster')
 
 @section('content')
     <h1>Bids</h1>
-    <a href="{{ route('bids.create') }}" class="btn btn-primary">Create Bid</a>
-    <table class="table mt-3">
+
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    <a href="{{ route('app.bids.create') }}" class="btn btn-primary">Create Bid</a>
+
+    <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Bidding</th>
+                <th>Product</th>
                 <th>Vendor</th>
                 <th>Price</th>
                 <th>Delivery Time</th>
@@ -17,22 +22,23 @@
         <tbody>
             @foreach ($bids as $bid)
                 <tr>
-                    <td>{{ $bid->id }}</td>
-                    <td>{{ $bid->bidding->id }}</td>
+                    <td>{{ $bid->bidding->product->name ?? 'N/A' }}</td>
                     <td>{{ $bid->vendor->name }}</td>
                     <td>{{ $bid->price }}</td>
-                    <td>{{ $bid->delivery_time }}</td>
+                    <td>{{ $bid->delivery_time }} days</td>
                     <td>
-                        <a href="{{ route('bids.show', $bid->id) }}" class="btn btn-sm btn-primary">View</a>
-                        <a href="{{ route('bids.edit', $bid->id) }}" class="btn btn-sm btn-secondary">Edit</a>
-                        <form action="{{ route('bids.destroy', $bid->id) }}" method="POST" class="d-inline">
+                        <a href="{{ route('app.bids.show', $bid) }}">View</a>
+                        <a href="{{ route('app.bids.edit', $bid) }}">Edit</a>
+                        <form action="{{ route('app.bids.destroy', $bid) }}" method="POST" style="display: inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this bid?')">Delete</button>
+                            <button type="submit" class="btn btn-link text-danger">Delete</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+    {{ $bids->links() }}
 @endsection

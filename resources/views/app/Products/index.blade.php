@@ -1,11 +1,10 @@
 @extends('layouts.layoutMaster')
 
 @section('content')
-    <h1>Product List</h1>
-    <table>
+    <h1>Products</h1>
+    <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Unit Price</th>
@@ -15,7 +14,6 @@
         <tbody>
             @foreach ($products as $product)
                 <tr>
-                    <td>{{ $product->id }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->unit_price }}</td>

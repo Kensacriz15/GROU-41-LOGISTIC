@@ -17,8 +17,8 @@ class CreateVendorsTable extends Migration
       $table->string('name', 255);
       $table->string('contact_name', 255);
       $table->string('email', 255);
-      $table->string('phone', 255);
-      $table->text('address');
+      $table->string('phone', 255)->nullable();
+      $table->text('address', 255)->nullable();
       $table->string('website', 255)->nullable();
       $table->timestamps();
     });

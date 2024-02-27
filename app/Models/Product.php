@@ -9,7 +9,7 @@ class Product extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['name', 'description', 'starting_price'];
+  protected $fillable = ['name', 'description', 'unit_price'];
 
   public function biddings()
   {

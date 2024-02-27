@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vendor extends Model
 {
-  protected $fillable = ['name', 'email'];
+  protected $fillable = ['name', 'email', 'contact_name', 'phone', 'address', 'website'];
 
   public function bids()
   {

@@ -5,5 +5,5 @@
     <p><strong>Name:</strong> {{ $product->name }}</p>
     <p><strong>Description:</strong> {{ $product->description }}</p>
     <p><strong>Unit Price:</strong> {{ $product->unit_price }}</p>
-    <a href="{{ route('products.index') }}">Back to List</a>
+    <a href="{{ route('app.products.index') }}">Back to List</a>
 @endsection
