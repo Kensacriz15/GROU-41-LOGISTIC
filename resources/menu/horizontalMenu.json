@@ -2,7 +2,7 @@
   "menu": [
     {
       "url": "/",
-      "name": "Overview",
+      "name": "Unified Procurement Management System",
       "icon": "menu-icon tf-icons ti ti-graph",
       "slug": "pages-home"
     },

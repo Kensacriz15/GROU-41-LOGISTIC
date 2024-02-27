@@ -1,126 +1,123 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Overview')
-
-@section('vendor-script')
-<script src="{{asset('assets/vendor/libs/chartjs/chartjs.js')}}"></script>
-@endsection
-
-@section('page-script')
-<script src="{{asset('assets/js/charts-chartjs.js')}}"></script>
-@endsection
+@section('title', 'Unified Procurement Management System')
 
 @section('content')
-
-<div class="row">
-  <!-- Bar Charts -->
-  <div class="col-xl-6 col-12 mb-4">
-    <div class="card">
-      <div class="card-header header-elements">
-        <h5 class="card-title mb-0">Procurement Overview</h5>
-        <div class="card-action-element ms-auto py-0">
-          <div class="dropdown">
-            <button type="button" class="btn dropdown-toggle px-0" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-calendar"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Today</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Yesterday</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Last 7 Days</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Last 30 Days</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Current Month</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Last Month</a></li>
-            </ul>
-          </div>
+<div class="container">
+  <h4 class="text-center">Procurement</h4>
+  <div class="row">
+  <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-gavel fa-3x mb-3"></i>
+          <h5 class="card-title">Biddings</h5>
+          <p class="card-text">Provide information about ongoing or upcoming bidding processes, including the start and end dates.</p>
+          <a href="{{ route('app.biddings.index') }}" class="btn btn-primary">View Biddings</a>
         </div>
       </div>
-      <div class="card-body">
-        <canvas id="barChart" class="chartjs" data-height="400"></canvas>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-user-tie fa-3x mb-3"></i>
+          <h5 class="card-title">Vendors</h5>
+          <p class="card-text">Display a list of registered vendors with their contact information.</p>
+          <a href="{{ route('app.vendors.index') }}" class="btn btn-primary">View Vendors</a>
+        </div>
+      </div>
+    </div>
+  <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-file-contract fa-3x mb-3"></i>
+          <h5 class="card-title">Contracts</h5>
+          <p class="card-text">Show the status of contracts resulting from successful bidding processes.</p>
+          <a href="{{ route('app.bids.index') }}" class="btn btn-primary">View Contracts</a>
+        </div>
       </div>
     </div>
   </div>
-  <!-- /Bar Charts -->
+  <h4 class="text-center">Purchase</h4>
+  <div class="row mt-4">
 
-  <!-- Horizontal Bar Charts -->
-  <div class="col-xl-6 col-12 mb-4">
-    <div class="card">
-      <div class="card-header header-elements">
-        <div class="d-flex flex-column">
-          <p class="card-subtitle text-muted mb-1">Purchase Overview</p>
-          <h5 class="card-title mb-0">PHP 69,201</h5>
-        </div>
-        <div class="card-action-element ms-auto py-0">
-          <div class="dropdown">
-            <button type="button" class="btn dropdown-toggle px-0" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-calendar"></i></button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Today</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Yesterday</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Last 7 Days</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Last 30 Days</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Current Month</a></li>
-              <li><a href="javascript:void(0);" class="dropdown-item d-flex align-items-center">Last Month</a></li>
-            </ul>
-          </div>
+  <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+          <h5 class="card-title">Purchase Orders</h5>
+          <p class="card-text">Highlight the latest purchase orders.</p>
+          <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-primary">View Purchase Orders</a>
         </div>
       </div>
-      <div class="card-body">
-        <canvas id="horizontalBarChart" class="chartjs" data-height="400"></canvas>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-money-check-alt fa-3x mb-3"></i>
+          <h5 class="card-title">Payments</h5>
+          <p class="card-text">Display recent payments made for purchase orders.</p>
+          <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-primary">View Payments</a>
+        </div>
+      </div>
+    </div>
+  <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-file-invoice-dollar fa-3x mb-3"></i>
+          <h5 class="card-title">Invoices</h5>
+          <p class="card-text">Show the latest invoices issued by vendors.</p>
+          <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-primary">View Invoices</a>
+        </div>
       </div>
     </div>
   </div>
-  <!-- /Horizontal Bar Charts -->
-
-  <!-- Line Charts -->
-  <div class="col-12 mb-4">
-    <div class="card">
-      <div class="card-header header-elements">
-        <div>
-          <h5 class="card-title mb-0">Inventory Overview</h5>
-          <small class="text-muted">ALL INVENTORY</small>
-        </div>
-        <div class="card-header-elements ms-auto py-0">
-          <h5 class="mb-0 me-3">PHP 21,451</h5>
-          <span class="badge bg-label-secondary">
-            <i class='ti ti-arrow-up ti-xs text-success'></i>
-            <span class="align-middle">37%</span>
-          </span>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-clipboard-check fa-3x mb-3"></i>
+          <h5 class="card-title">Audits</h5>
+          <p class="card-text">Provide updates on ongoing or completed audits.</p>
+          <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-primary">View Audits</a>
         </div>
       </div>
-      <div class="card-body pt-2">
-        <canvas id="lineChart" class="chartjs" data-height="500"></canvas>
+    </div>
+    <h4 class="text-center">Inventory</h4>
+  <div class="row mt-4">
+  <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-warehouse fa-3x mb-3"></i>
+          <h5 class="card-title">Inventories</h5>
+          <p class="card-text">Display a list of inventory locations with their names, descriptions, and creation/update dates.</p>
+          <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-primary">View Inventories</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-cubes fa-3x mb-3"></i>
+          <h5 class="card-title">Products</h5>
+          <p class="card-text">Show a list of products with their names, descriptions, unit prices, and creation/update dates.</p>
+          <a href="{{ route('app.products.index') }}" class="btn btn-primary">View Products</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <i class="fas fa-chart-line fa-3x mb-3"></i>
+          <h5 class="card-title">Demand Forecasts</h5>
+          <p class="card-text">Showcase the annual and monthly demand forecasts for different products.</p>
+          <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-primary">View Demand Forecasts</a>
+        </div>
       </div>
     </div>
   </div>
-  <!-- /Line Charts -->
-
-
-  <!-- Scatter Chart -->
-  <div class="col-12 mb-4">
-    <div class="card">
-      <div class="card-header flex-nowrap header-elements">
-        <h5 class="card-title mb-0">Inventory Product Overview</h5>
-        <div class="card-header-elements ms-auto py-0 d-none d-sm-block">
-          <div class="btn-group" role="group" aria-label="radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="dailyRadio" checked>
-            <label class="btn btn-outline-secondary" for="dailyRadio">Daily</label>
-
-            <input type="radio" class="btn-check" name="btnradio" id="monthlyRadio">
-            <label class="btn btn-outline-secondary" for="monthlyRadio">Monthly</label>
-
-            <input type="radio" class="btn-check" name="btnradio" id="yearlyRadio">
-            <label class="btn btn-outline-secondary" for="yearlyRadio">Yearly</label>
-          </div>
-        </div>
-      </div>
-      <div class="card-body pt-2">
-        <canvas id="scatterChart" class="chartjs" data-height="435"></canvas>
-      </div>
-    </div>
+    <!-- Add more cards for other sections -->
   </div>
-  <!-- /Scatter Chart -->
 </div>
 @endsection
