@@ -13,22 +13,22 @@
       "slug": "",
       "submenu": [
         {
-          "url": "/ppm-public-biddings",
+          "url": "/biddings",
           "icon": "",
-          "name": "Public Bidding",
-          "slug": "ppm-public-biddings"
+          "name": "Biddings",
+          "slug": "app.biddings.index"
         },
         {
-          "url": "/ppm-small-value-procurement",
+          "url": "/vendors",
           "icon": "",
-          "name": "Small Value Procurement",
-          "slug": "ppm-small-value-procurement"
+          "name": "Vendors",
+          "slug": "app.vendors.index"
         },
         {
-          "url": "/pages-inventory-for-sale-lease",
+          "url": "/contracts",
           "icon": "",
-          "name": "Inventory for Sale/Lease",
-          "slug": "pages-inventory-for-sale-lease"
+          "name": "Contracts",
+          "slug": "app.contracts.index"
         }
       ]
     },
@@ -39,36 +39,22 @@
       "slug": "",
       "submenu": [
         {
-          "url": "/pages-create-purchase-order",
+          "url": "/purchase_orders",
           "icon": "",
-          "name": "Create Purchase Order",
-          "slug": "pages-create-purchase-order"
+          "name": "Purchase Orders",
+          "slug": "app.purchase_orders.index"
         },
         {
-          "url": "/pages-purchase-order-list",
+          "url": "/payments/recent",
           "icon": "",
-          "name": "Purchase Order List",
-          "slug": "pages-purchase-order-list"
+          "name": "Payments",
+          "slug": "payments.recent"
         },
         {
-          "url": "/",
+          "url": "/invoices",
           "icon": "",
-          "name": "Invoice Management",
-          "slug": "pages-invetory",
-          "submenu": [
-            {
-              "url": "/",
-              "icon": "",
-              "name": "Invoice List",
-              "slug": "pages-invetory"
-            },
-            {
-              "url": "/",
-              "icon": "",
-              "name": "Invoice Approval Workflow",
-              "slug": "pages-invetory"
-            }
-          ]
+          "name": "Invoices",
+          "slug": "app.invoices.index"
         }
       ]
     },
@@ -79,96 +65,30 @@
       "slug": "",
       "submenu": [
         {
-          "url": "/pages-all-inventory",
+          "url": "/inventories",
           "icon": "",
           "name": "All Inventory",
-          "slug": "pages-all-inventory",
-          "target": ""
+          "slug": "app.inventories.index"
         },
         {
-          "url": "/pages-mro-inventory",
+          "url": "/products",
           "icon": "",
-          "name": "MRO Inventory",
-          "slug": "pages-mro-inventory"
+          "name": "Products",
+          "slug": "app.products.index"
         },
         {
-          "url": "/pages-request-history",
+          "url": "/product_inventories",
           "icon": "",
-          "name": "Request History",
-          "slug": "pages-request-history"
+          "name": "Product in Inventories",
+          "slug": "app.product_inventories.index"
         },
         {
-          "url": "/pages-approval-workflow",
+          "url": "/pages/misc-error",
           "icon": "",
-          "name": "Approval Workflow",
-          "slug": "pages-approval-workflow"
-        },
-        {
-          "url": "/pages-pending-approval",
-          "icon": "",
-          "name": "Pending Approval",
-          "slug": "pages-pending-approval"
-        },
-        {
-          "url": "/pages-returned-inventory",
-          "icon": "",
-          "name": "Returned Inventory",
-          "slug": "pages-returned-inventory"
-        },
-        {
-          "url": "/pages-locations",
-          "icon": "",
-          "name": "Locations",
-          "slug": "/pages-locations"
-        },
-        {
-          "url": "/",
-          "icon": "",
-          "name": "Items Management",
-          "slug": "",
-          "submenu": [
-            {
-              "url": "/pages-items-management-add",
-              "icon": "",
-              "name": "Add new Items",
-              "slug": "pages-items-management-add"
-            },
-            {
-              "url": "/pages-items-management-list",
-              "icon": "",
-              "name": "Items List",
-              "slug": "pages-items-management-list"
-            }
-          ]
-        },
-        {
-          "url": "/pages-reorder",
-          "icon": "",
-          "name": "Reorder List",
-          "slug": "pages-reorder"
+          "name": "Demmand Forecast Data",
+          "slug": ""
         }
       ]
-    },
-    {
-      "url": "pages/misc-error",
-      "name": "Error",
-      "icon": "menu-icon tf-icons ti ti-alert-triangle",
-      "slug": "pages-misc-error",
-      "target": "_blank"
-    },
-    {
-      "url": "auth/login-basic",
-      "name": "Login",
-      "icon": "menu-icon tf-icons ti ti-login",
-      "slug": "auth-login-basic",
-      "target": "_blank"
-    },
-    {
-      "url": "auth/register-basic",
-      "name": "Register",
-      "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "auth-register-basic",
-      "target": "_blank"
     }
   ]
 }

@@ -3,7 +3,7 @@
 @section('content')
     <h1>Contract Details</h1>
 
-    <p><strong>Bidding:</strong> {{ $contract->bidding->title ?? 'N/A' }}</p>
+    <p><strong>Bidding:</strong> {{ $contract->bidding->name ?? 'N/A' }}</p>
     <p><strong>Vendor:</strong> {{ $contract->vendor->name }}</p>
     <p><strong>Product:</strong> {{ $contract->product->name ?? 'N/A' }}</p>
     <p><strong>Quantity:</strong> {{ $contract->quantity }}</p>

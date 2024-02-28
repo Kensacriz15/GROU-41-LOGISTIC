@@ -3,27 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\pages\HomePage;
-use App\Http\Controllers\pages\Page2;
-use App\Http\Controllers\pages\PublicBidding;
-use App\Http\Controllers\pages\SmallValueProcurement;
-use App\Http\Controllers\pages\InventoryforSaleLease;
-use App\Http\Controllers\pages\CreatePurchaseOrder;
-use App\Http\Controllers\pages\PurchaseOrderList;
-use App\Http\Controllers\pages\AllInventory;
-use App\Http\Controllers\pages\MROInventory;
-use App\Http\Controllers\pages\RequestHistory;
-use App\Http\Controllers\pages\ApprovalWorkflow;
-use App\Http\Controllers\pages\PendingApproval;
-use App\Http\Controllers\pages\ReturnedInventory;
-use App\Http\Controllers\pages\Locations;
-use App\Http\Controllers\pages\ItemsManagementAdd;
-use App\Http\Controllers\pages\ItemsManagementList;
-use App\Http\Controllers\pages\Reorder;
-use App\Http\Controllers\pages\MiscError;
-use App\Http\Controllers\authentications\LoginBasic;
-use App\Http\Controllers\authentications\RegisterBasic;
-use App\Http\Controllers\PpmPublicBiddingController;
-use App\Http\Controllers\PpmSmallValueProcurementController;
 //UNNFIED PPM CONTROLLER
 use App\Http\Controllers\BiddingController;
 use App\Http\Controllers\ProductController;
@@ -32,6 +11,10 @@ use App\Http\Controllers\BidController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductInventoryController;
+use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\AuditsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -151,6 +134,36 @@ Route::get('/product_inventories/{productinventory}', [ProductInventoryControlle
 Route::get('/product_inventories/{productInventory}/edit', [ProductInventoryController::class, 'edit'])->name('app.product_inventories.edit');
 Route::put('/product_inventories/{productinventory}', [ProductInventoryController::class, 'update'])->name('app.product_inventories.update');
 Route::delete('/product_inventories/{productinventory}', [ProductInventoryController::class, 'destroy'])->name('app.product_inventories.destroy');
+
+Route::resource('purchase_orders', PurchaseOrderController::class);
+Route::get('/purchase_orders', [PurchaseOrderController::class, 'index'])->name('app.purchase_orders.index');
+Route::get('/purchase_orders/create', [PurchaseOrderController::class, 'create'])->name('app.purchase_orders.create');
+Route::post('/purchase_orders', [PurchaseOrderController::class, 'store'])->name('app.purchase_orders.store');
+Route::get('/purchase_orders/{purchaseOrder}', [PurchaseOrderController::class, 'show'])->name('app.purchase_orders.show');
+Route::get('/purchase_orders/{purchaseOrder}/edit', [PurchaseOrderController::class, 'edit'])->name('app.purchase_orders.edit');
+Route::put('/purchase_orders/{purchaseOrder}', [PurchaseOrderController::class, 'update'])->name('app.purchase_orders.update');
+Route::delete('/purchase_orders/{purchaseOrder}', [PurchaseOrderController::class, 'destroy'])->name('app.purchase_orders.destroy');
+Route::get('/payments/recent', [PaymentsController::class, 'showRecentPayments'])->name('payments.recent');
+Route::get('/payments/demo', function () {return view('app.payments.demo');});
+Route::post('/payments/update-payment', [PaymentsController::class, 'updatePayment']);
+
+Route::resource('invoices', InvoicesController::class);
+Route::get('/invoices', [InvoicesController::class, 'index'])->name('app.invoices.index');
+Route::get('/invoices/create', [InvoicesController::class, 'create'])->name('app.invoices.create');
+Route::post('/invoices', [InvoicesController::class, 'store'])->name('app.invoices.store');
+Route::get('/invoices/{invoice}', [InvoicesController::class, 'show'])->name('app.invoices.show');
+Route::get('/invoices/{invoice}/edit', [InvoicesController::class, 'edit'])->name('app.invoices.edit');
+Route::put('/invoices/{invoice}', [InvoicesController::class, 'update'])->name('app.invoices.update');
+Route::delete('/invoices/{invoice}', [InvoicesController::class, 'destroy'])->name('app.invoices.destroy');
+
+Route::resource('audits', AuditsController::class);
+Route::get('/audits', [AuditsController::class, 'index'])->name('app.audits.index');
+Route::get('/audits/create', [AuditsController::class, 'create'])->name('app.audits.create');
+Route::post('/audits', [AuditsController::class, 'store'])->name('app.audits.store');
+Route::get('/audits/{audit}', [AuditsController::class, 'show'])->name('app.audits.show');
+Route::get('/audits/{audit}/edit', [AuditsController::class, 'edit'])->name('app.audits.edit');
+Route::put('/audits/{audit}', [AuditsController::class, 'update'])->name('app.audits.update');
+Route::delete('/audits/{audit}', [AuditsController::class, 'destroy'])->name('app.audits.destroy');
 //EXIT PPM
 
 // Purchase

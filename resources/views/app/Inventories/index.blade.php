@@ -8,9 +8,6 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-
-    <a href="{{ route('app.inventories.create') }}" class="btn btn-primary">Create New Inventory</a>
-
     <table class="table table-bordered">
         <tr>
             <th>No</th>
@@ -40,6 +37,11 @@
         </tr>
         @endforelse
     </table>
-
+    <div style="text-align: center; margin: 20px;">
+    <a href="{{ route('app.inventories.create') }}" class="btn btn-primary">Create New Inventory</a>
+    </div>
+    <div style="text-align: center; margin: 20px;">
+    <a href="{{ route('app.product_inventories.index') }}" class="btn btn-warning">List of Product in Inventory</a>
+    </div>
     {!! $inventories->links() !!}
 @endsection
