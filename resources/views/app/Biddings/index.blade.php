@@ -1,8 +1,7 @@
 @extends('layouts/layoutMaster')
 
 @section('content')
-    <h1>Biddings</h1>
-    <a href="{{ route('biddings.create') }}" class="btn btn-primary">Create Bidding</a>
+    <h1>Public Biddings</h1>
     <table class="table mt-3">
         <thead>
             <tr>
@@ -33,4 +32,10 @@
             @endforeach
         </tbody>
     </table>
+    <div style="text-align: center; margin: 20px;">
+    <a href="{{ route('biddings.create') }}" class="btn btn-primary">Create Bidding</a>
+    </div>
+    <div style="text-align: center; margin: 20px;">
+    <a href="{{ route('app.products.index') }}" class="btn btn-warning">List a Product</a>
+    </div>
 @endsection

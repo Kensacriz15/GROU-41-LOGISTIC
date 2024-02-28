@@ -6,9 +6,6 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
-    <a href="{{ route('app.vendors.create') }}" class="btn btn-primary">Create Vendor</a>
-
     <table class="table">
         <thead>
             <tr>
@@ -37,6 +34,11 @@
             @endforeach
         </tbody>
     </table>
-
+    <div style="text-align: center; margin: 20px;">
+    <a href="{{ route('app.vendors.create') }}" class="btn btn-primary">Create Vendor</a>
+    </div>
+    <div style="text-align: center; margin: 20px;">
+    <a href="{{ route('app.bids.index') }}" class="btn btn-warning">Winners</a>
+    </div>
     {{ $vendors->links() }}
 @endsection

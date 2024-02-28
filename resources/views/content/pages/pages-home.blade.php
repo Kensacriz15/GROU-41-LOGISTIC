@@ -33,7 +33,7 @@
           <i class="fas fa-file-contract fa-3x mb-3"></i>
           <h5 class="card-title">Contracts</h5>
           <p class="card-text">Show the status of contracts resulting from successful bidding processes.</p>
-          <a href="{{ route('app.bids.index') }}" class="btn btn-primary">View Contracts</a>
+          <a href="{{ route('app.contracts.index') }}" class="btn btn-primary">View Contracts</a>
         </div>
       </div>
     </div>
@@ -91,7 +91,7 @@
           <i class="fas fa-warehouse fa-3x mb-3"></i>
           <h5 class="card-title">Inventories</h5>
           <p class="card-text">Display a list of inventory locations with their names, descriptions, and creation/update dates.</p>
-          <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-primary">View Inventories</a>
+          <a href="{{ route('app.inventories.index') }}" class="btn btn-primary">View Inventories</a>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
   {
     Schema::create('products', function (Blueprint $table) {
       $table->id();
-      $table->string('name')->nullable(); // Allow the 'name' field to be nullable
+      $table->string('name')->nullable();
       $table->text('description');
       $table->decimal('unit_price', 10, 2)->default(0.0);
       $table->timestamps();

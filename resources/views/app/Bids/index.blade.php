@@ -7,8 +7,6 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('app.bids.create') }}" class="btn btn-primary">Create Bid</a>
-
     <table class="table">
         <thead>
             <tr>
@@ -27,18 +25,20 @@
                     <td>{{ $bid->price }}</td>
                     <td>{{ $bid->delivery_time }} days</td>
                     <td>
-                        <a href="{{ route('app.bids.show', $bid) }}">View</a>
-                        <a href="{{ route('app.bids.edit', $bid) }}">Edit</a>
-                        <form action="{{ route('app.bids.destroy', $bid) }}" method="POST" style="display: inline">
+                        <a href="{{ route('app.bids.show', $bid) }}"class="btn btn-sm btn-primary">View</a>
+                        <a href="{{ route('app.bids.edit', $bid) }}"class="btn btn-sm btn-secondary">Edit</a>
+                        <form action="{{ route('app.bids.destroy', $bid->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-link text-danger">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this bids?')">Delete</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
+    <div style="text-align: center; margin: 20px;">
+    <a href="{{ route('app.bids.create') }}" class="btn btn-primary">Create Vendor Bid</a>
+    </div>
     {{ $bids->links() }}
 @endsection
