@@ -24,10 +24,12 @@ class ProductController extends Controller
     return redirect()->route('app.products.show', $product->id);
   }
 
-  public function show(Product $product)
-  {
+public function show(Product $product)
+{
+    $product->load('inventories');
     return view('app.products.show', compact('product'));
-  }
+}
+
 
   public function edit(Product $product)
   {

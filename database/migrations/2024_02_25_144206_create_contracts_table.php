@@ -26,9 +26,10 @@ class CreateContractsTable extends Migration
       $table->timestamps();
 
       $table
-        ->foreign('bidding_id')
-        ->references('id')
-        ->on('biddings');
+      ->foreign('bidding_id')
+      ->references('id')
+      ->on('biddings')
+      ->onDelete('cascade');
       $table
         ->foreign('vendor_id')
         ->references('id')

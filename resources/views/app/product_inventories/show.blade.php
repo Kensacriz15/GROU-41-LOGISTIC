@@ -1,25 +1,20 @@
 @extends('layouts.layoutMaster')
 
 @section('content')
-    <h1>Product Inventory Details</h1>
+<h1>Product Inventory Details</h1>
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
+@if($productInventory->product)
+    <p><strong>Product:</strong> {{ $productInventory->product->name }}</p>
+@endif
+
+@if($productInventory->inventory)
+    <p><strong>Inventory:</strong> {{ $productInventory->inventory->name }}</p>
+@endif
+
+<p><strong>Quantity:</strong> {{ $productInventory->quantity }}
+    @if($productInventory->quantity <= $productInventory->reorder_level)
+        <span style="color: red;"> (Low Stock)</span>
     @endif
-
-    <div>
-        <p><strong>Product:</strong> {{ $productInventory->product->name }}</p>
-        <p><strong>Inventory:</strong> {{ $productInventory->inventory->name }}</p>
-        <p><strong>Quantity:</strong> {{ $productInventory->pivot->quantity }}</p>
-
-        {{-- Reorder Alert --}}
-        <p><strong>Reorder Level:</strong>
-           {{ $productInventory->pivot->reorder_level }}
-           @if ($productInventory->pivot->quantity <= $productInventory->pivot->reorder_level)
-               <span class="badge rounded-pill bg-warning text-dark">Reorder Needed</span>
-           @endif
-        </p>
-    </div>
+</p>
+<p><strong>Reorder Level:</strong> {{ $productInventory->reorder_level }}</p>
 @endsection

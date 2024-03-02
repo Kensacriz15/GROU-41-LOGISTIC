@@ -18,8 +18,8 @@
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->unit_price }}</td>
                     <td>
-                        <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-primary">View</a>
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                        <a href="{{ route('app.products.show', $product->id) }}" class="btn btn-sm btn-primary">View</a>
+                        <a href="{{ route('app.products.edit', $product->id) }}" class="btn btn-sm btn-secondary">Edit</a>
                         <form action="{{ route('app.products.destroy', $product->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
@@ -31,6 +31,6 @@
         </tbody>
     </table>
     <div style="text-align: center; margin: 20px;">
-    <a href="{{ route('products.create') }}" class="btn btn-primary">Create Product</a>
+    <a href="{{ route('app.products.create') }}" class="btn btn-primary">Create Product</a>
     </div>
 @endsection

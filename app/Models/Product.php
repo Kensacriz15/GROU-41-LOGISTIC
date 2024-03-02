@@ -37,7 +37,9 @@ class Product extends Model
 
     public function inventories()
     {
-        return $this->belongsToMany(Inventory::class)->withPivot('quantity', 'reorder_level');
+        return $this->belongsToMany(Inventory::class, 'inventory_product')
+                    ->withPivot('quantity', 'reorder_level');
+                    $product->inventories()->detach($inventoryId);
     }
 
     public function productInventories()
@@ -46,4 +48,8 @@ class Product extends Model
             ->using(ProductInventory::class)
             ->withPivot('quantity', 'reorder_level');
     }
+    public function scopePublicProducts($query)
+{
+    return $query->where('public', true);
+}
 }

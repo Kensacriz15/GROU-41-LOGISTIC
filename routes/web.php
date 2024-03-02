@@ -28,66 +28,28 @@ use App\Http\Controllers\AuditsController;
 
 // Main Page Route
 Route::get('/', [HomePage::class, 'index'])->name('pages-home');
-Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2');
 
 // locale
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
-// pages
-Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
-// Procurement Public Bidding
-Route::get('/ppm-public-biddings', [PpmPublicBiddingController::class, 'index'])->name('ppm-public-biddings.index');
-Route::get('/ppm-public-biddings/create', [PpmPublicBiddingController::class, 'create'])->name(
-  'ppm-public-biddings.create'
-);
-Route::post('/ppm-public-biddings', [PpmPublicBiddingController::class, 'store'])->name('ppm-public-biddings.store');
-Route::get('/ppm-public-biddings/{publicBidding}', [PpmPublicBiddingController::class, 'show'])->name(
-  'ppm-public-biddings.show'
-);
-Route::get('/ppm-public-biddings/{publicBidding}/edit', [PpmPublicBiddingController::class, 'edit'])->name(
-  'ppm-public-biddings.edit'
-);
-Route::put('/ppm-public-biddings/{publicBidding}', [PpmPublicBiddingController::class, 'update'])->name(
-  'ppm-public-biddings.update'
-);
-Route::delete('/ppm-public-biddings/{publicBidding}', [PpmPublicBiddingController::class, 'destroy'])->name(
-  'ppm-public-biddings.destroy'
-);
-// Procurement Small Value Procurement
-Route::get('ppm-small-value-procurement', [PpmSmallValueProcurementController::class, 'index'])->name(
-  'ppm-small-value-procurements.index'
-);
-Route::get('/ppm-small-value-procurements/create', [PpmSmallValueProcurementController::class, 'create'])->name(
-  'ppm-small-value-procurements.create'
-);
-Route::post('/ppm-small-value-procurements', [PpmSmallValueProcurementController::class, 'store'])->name(
-  'ppm-small-value-procurements.store'
-);
-Route::get('/ppm-small-value-procurements/{id}', [PpmSmallValueProcurementController::class, 'show'])->name(
-  'ppm-small-value-procurements.show'
-);
-Route::get('/ppm-small-value-procurements/{id}/edit', [PpmSmallValueProcurementController::class, 'edit'])->name(
-  'ppm-small-value-procurements.edit'
-);
-Route::put('/ppm-small-value-procurements/{id}', [PpmSmallValueProcurementController::class, 'update'])->name(
-  'ppm-small-value-procurements.update'
-);
-Route::delete('/ppm-small-value-procurements/{id}', [PpmSmallValueProcurementController::class, 'destroy'])->name(
-  'ppm-small-value-procurements.destroy'
-);
-//EXIT
 
 //UNIFIED PPM
 Route::resource('biddings', BiddingController::class);
-Route::get('/biddings/{bidding}', [BiddingController::class, 'show'])->name('app.biddings.show');
-Route::get('/biddings/{bidding}', [BiddingController::class, 'show'])->name('biddings.show');
 Route::get('/biddings', [BiddingController::class, 'index'])->name('app.biddings.index');
-Route::get('/biddings/{bidding}', [BiddingController::class, 'show'])->name('biddings.show');
+Route::get('/biddings/create', [BiddingController::class, 'create'])->name('app.biddings.create');
+Route::post('/biddings', [BiddingController::class, 'store'])->name('app.biddings.store');
 Route::get('/biddings/{id}', [BiddingController::class, 'show'])->name('app.biddings.show');
+Route::get('/biddings/{bidding}/edit', [BiddingController::class, 'edit'])->name('app.biddings.edit');
+Route::put('/biddings/{bidding}', [BiddingController::class, 'update'])->name('app.biddings.update');
+Route::delete('/biddings/{bidding}', [BiddingController::class, 'destroy'])->name('app.biddings.destroy');
 
 Route::resource('products', ProductController::class);
 Route::get('/products', [ProductController::class, 'index'])->name('app.products.index');
-Route::get('/app/products/{product}', [ProductController::class, 'show'])->name('app.products.show');
+Route::get('/products/create', [ProductController::class, 'create'])->name('app.products.create');
+Route::post('/products', [ProductController::class, 'store'])->name('app.products.store');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('app.products.show');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('app.products.edit');
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('app.products.update');
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('app.products.destroy');
 
 Route::resource('bids', BidController::class);
@@ -134,6 +96,7 @@ Route::get('/product_inventories/{productinventory}', [ProductInventoryControlle
 Route::get('/product_inventories/{productInventory}/edit', [ProductInventoryController::class, 'edit'])->name('app.product_inventories.edit');
 Route::put('/product_inventories/{productinventory}', [ProductInventoryController::class, 'update'])->name('app.product_inventories.update');
 Route::delete('/product_inventories/{productinventory}', [ProductInventoryController::class, 'destroy'])->name('app.product_inventories.destroy');
+Route::get('/product-inventories/{productInventory}', [ProductInventoryController::class, 'show']);
 
 Route::resource('purchase_orders', PurchaseOrderController::class);
 Route::get('/purchase_orders', [PurchaseOrderController::class, 'index'])->name('app.purchase_orders.index');
@@ -166,21 +129,15 @@ Route::put('/audits/{audit}', [AuditsController::class, 'update'])->name('app.au
 Route::delete('/audits/{audit}', [AuditsController::class, 'destroy'])->name('app.audits.destroy');
 //EXIT PPM
 
-// Purchase
-Route::get('/pages-create-purchase-order', [CreatePurchaseOrder::class, 'index'])->name('pages-create-purchase-order');
-Route::get('/pages-purchase-order-list', [PurchaseOrderList::class, 'index'])->name('pages-purchase-order-list');
-// Inventory
-Route::get('/pages-all-inventory', [AllInventory::class, 'index'])->name('pages-all-inventory');
-Route::get('/pages-mro-inventory', [MROInventory::class, 'index'])->name('pages-mro-inventory');
-Route::get('/pages-request-history', [RequestHistory::class, 'index'])->name('pages-request-history');
-Route::get('/pages-approval-workflow', [ApprovalWorkflow::class, 'index'])->name('pages-approval-workflow');
-
-Route::get('/pages-pending-approval', [PendingApproval::class, 'index'])->name('pages-pending-approval');
-Route::get('/pages-returned-inventory', [ReturnedInventory::class, 'index'])->name('pages-returned-inventory');
-Route::get('/pages-locations', [Locations::class, 'index'])->name('pages-locations');
-Route::get('/pages-items-management-add', [ItemsManagementAdd::class, 'index'])->name('pages-items-management-add');
-Route::get('/pages-items-management-list', [ItemsManagementList::class, 'index'])->name('pages-items-management-list');
-Route::get('/pages-reorder', [Reorder::class, 'index'])->name('pages-pages-reorder');
 // authentication
-Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
-Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

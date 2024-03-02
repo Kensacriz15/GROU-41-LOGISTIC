@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Edit Bidding</h1>
-    <form action="{{ route('biddings.update', $bidding->id) }}" method="POST">
+    <form action="{{ route('app.biddings.update', $bidding->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">

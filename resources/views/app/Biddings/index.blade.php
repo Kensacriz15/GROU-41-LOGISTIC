@@ -20,9 +20,9 @@
                     <td>{{ $bidding->start_date }}</td>
                     <td>{{ $bidding->end_date }}</td>
                     <td>
-                        <a href="{{ route('biddings.show', $bidding->id) }}" class="btn btn-sm btn-primary">View</a>
-                        <a href="{{ route('biddings.edit', $bidding->id) }}" class="btn btn-sm btn-secondary">Edit</a>
-                        <form action="{{ route('biddings.destroy', $bidding->id) }}" method="POST" class="d-inline">
+                        <a href="{{ route('app.biddings.show', $bidding->id) }}" class="btn btn-sm btn-primary">View</a>
+                        <a href="{{ route('app.biddings.edit', $bidding->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                        <form action="{{ route('app.biddings.destroy', $bidding->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this bidding?')">Delete</button>
@@ -33,7 +33,7 @@
         </tbody>
     </table>
     <div style="text-align: center; margin: 20px;">
-    <a href="{{ route('biddings.create') }}" class="btn btn-primary">Create Bidding</a>
+    <a href="{{ route('app.biddings.create') }}" class="btn btn-primary">Create Bidding</a>
     </div>
     <div style="text-align: center; margin: 20px;">
     <a href="{{ route('app.products.index') }}" class="btn btn-warning">List a Product</a>

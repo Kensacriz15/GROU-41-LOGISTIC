@@ -16,6 +16,7 @@ class CreateInventoriesTable extends Migration
             $table->string('contact_person');
             $table->string('type');
             $table->timestamps();
+
         });
     }
 

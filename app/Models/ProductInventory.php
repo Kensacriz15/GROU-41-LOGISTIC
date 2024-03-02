@@ -15,11 +15,12 @@ class ProductInventory extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'inventory_product')
-                    ->withPivot('quantity', 'reorder_level');
+        return $this->belongsToMany(Product::class, 'inventory_product', 'inventory_id', 'product_id') // Change is here
+                     ->withPivot('quantity', 'reorder_level');
     }
+
     public function inventories()
     {
-        return $this->belongsToMany(Inventory::class, 'inventory_product');
+        return $this->belongsToMany(Inventory::class, 'inventory_product', 'product_id', 'inventory_id'); // Change is here
     }
 }

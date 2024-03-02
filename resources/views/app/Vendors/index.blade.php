@@ -1,7 +1,7 @@
 @extends('layouts.layoutMaster')
 
 @section('content')
-    <h1>Vendors</h1>
+    <h1 class="text-center">Vendors List</h1>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

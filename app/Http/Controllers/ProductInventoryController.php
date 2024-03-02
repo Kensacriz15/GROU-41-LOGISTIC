@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Validator;
 class ProductInventoryController extends Controller
 {
   public function index()
-{
-    $productInventories = Product::with('inventories')->get(); // Assuming Product has `inventories` relationship
-    return view('app.product_inventories.index', compact('productInventories'));
-}
+  {
+      $productInventories = Product::with('inventories')->get();
+      return view('app.product_inventories.index', compact('productInventories'));
+  }
 
     public function create()
     {
@@ -23,29 +23,38 @@ class ProductInventoryController extends Controller
     }
 
     public function store(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'product_id' => 'required|exists:products,id',
-        'inventory_id' => 'required|exists:inventories,id',
-        'quantity' => 'required|integer|min:0', // Ensure quantity is non-negative
-        'reorder_level' => 'required|integer'
-    ]);
+    {
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|exists:products,id',
+            'inventory_id' => 'required|exists:inventories,id',
+            'quantity' => 'required|integer|min:0', // Ensure quantity is non-negative
+            'reorder_level' => 'required|integer'
+        ]);
 
-    if ($validator->fails()) {
-        return redirect()->back()
-                         ->withErrors($validator)
-                         ->withInput();
+        if ($validator->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput();
+        }
+
+        $product = Product::findOrFail($request->product_id);
+        $inventory = Inventory::findOrFail($request->inventory_id);
+
+        // Check if the product already has an associated inventory
+        if ($product->inventories->isNotEmpty()) {
+            // Update the existing inventory record
+            $product->inventories()->detach();
+        }
+
+        // Attach the new inventory record
+        $product->inventories()->attach($inventory, [
+            'quantity' => $request->quantity,
+            'reorder_level' => $request->reorder_level
+        ]);
+
+        return redirect()->route('app.product_inventories.store')
+                         ->with('success', 'Product added to inventory successfully.');
     }
-
-    $product = Product::findOrFail($request->product_id);
-    $product->inventories()->attach($request->inventory_id, [
-        'quantity' => $request->quantity,
-        'reorder_level' => $request->reorder_level
-    ]);
-
-    return redirect()->route('app.product_inventories.store')
-                     ->with('success', 'Product added to inventory successfully.');
-}
 public function edit($productInventoryId)
 {
     $productInventory = ProductInventory::with('inventories')->findOrFail($productInventoryId);
@@ -83,12 +92,27 @@ public function update(Request $request, $productInventoryId)
     return redirect()->route('app.product_inventories.index')
                      ->with('success', 'Product inventory updated successfully.');
 }
+public function show(ProductInventory $productInventory)
+{
+
+    return view('app.product_inventories.show', compact('productInventory'));
+}
 public function destroy($productInventoryId, Request $request)
 {
-    $productInventory = ProductInventory::findOrFail($productInventoryId);
-    $productInventory->inventories()->detach($request->inventory_id); // Only pass the inventory_id
+  $productInventory->inventories()->detach($request->inventory_id); // Only pass the inventory_id
 
     return redirect()->route('app.product_inventories.index')
                  ->with('success', 'Product removed from inventory successfully.');
+}
+public function addInventoryToProduct(Request $request, Product $product)
+{
+    $inventory = Inventory::find($request->inventory_id);
+
+    $product->inventories()->updateExistingPivot($inventory->id, [
+        'quantity' => $request->quantity,
+        'reorder_level' => $request->reorder_level
+    ]);
+
+    // ... other logic, e.g., redirect with a success message...
 }
 }

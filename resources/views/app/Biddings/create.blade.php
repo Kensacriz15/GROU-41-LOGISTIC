@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Create Bidding</h1>
-    <form action="{{ route('biddings.store') }}" method="POST">
+    <form action="{{ route('app.biddings.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="product_id">Product</label>

@@ -111,7 +111,7 @@
             <i class="fas fa-chart-line fa-3x mb-3 text-danger"></i>
             <h5 class="card-title text-danger">Demand Forecasts</h5>
             <p class="card-text">Get insights into the annual and monthly demand forecasts for different products.</p>
-            <a href="{{ route('ppm-public-biddings.index') }}" class="btn btn-danger rounded-pill">View Demand Forecasts</a>
+            <a href="{{ route('app.products.index') }}" class="btn btn-danger rounded-pill">View Demand Forecasts</a>
           </div>
         </div>
       </div>
