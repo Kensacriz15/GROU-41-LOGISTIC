@@ -96,28 +96,26 @@
       </div>
       <div class="table-responsive border-top">
   <table class="table m-0">
+  <table>
     <thead>
-      <tr>
-        <th>Item</th>
-        <th>Description</th>
-        <th>Cost</th>
-        <th>Qty</th>
-        <th>Price</th>
-      </tr>
+        <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
     </thead>
     <tbody>
-    @if ($invoice->vendor->bids)
-    @foreach ($invoice->lineItems as $lineItem)
-    <tr>
-        <td>{{ $lineItem->product->name }} </td>
-        <td>{{ $lineItem->product->description }} </td>
-        <td>₱{{ number_format($lineItem->price, 2) }}</td>
-        <td>{{ $lineItem->quantity }}</td> {{-- Assuming you have quantity --}}
-   </tr>
-@endforeach
-@else
-    <tr><td colspan="5">No bids found for this invoice.</td></tr>
-@endif
+        @foreach ($invoice->lineItems as $item)
+        <tr>
+            <td>{{ $item->product->name ?? 'N/A' }}</td>
+            <td>{{ $item->quantity }}</td>
+            <td>{{ $item->price }}</td>
+            <td>{{ $item->quantity * $item->price}}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 <tr>
   <td colspan="3" class="align-top px-4 py-4">
     <p class="mb-2 mt-3">
