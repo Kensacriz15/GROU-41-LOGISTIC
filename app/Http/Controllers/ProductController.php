@@ -20,7 +20,7 @@ class ProductController extends Controller
 
   public function store(Request $request)
   {
-    $product = Product::create($request->all());
+      'product_category_id' => 'required',
     return redirect()->route('app.products.show', $product->id);
   }
 
