@@ -7,9 +7,19 @@ use Illuminate\Http\Request;
 
 class VendorController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    $vendors = Vendor::paginate(10);
+    $search_term = $request->input('search');
+
+    $vendors = Vendor::query(); // Start with the base query
+
+    if ($search_term) {
+        $vendors->where('name', 'LIKE', "%{$search_term}%")
+                ->orWhere('email', 'LIKE', "%{$search_term}%")
+                ->orWhere('contact_name', 'LIKE', "%{$search_term}%");
+    }
+
+    $vendors = $vendors->paginate(10);
     return view('app.vendors.index', compact('vendors'));
   }
   public function create()

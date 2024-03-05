@@ -64,12 +64,14 @@ class ProductController extends Controller
 
 
 
-public function show(Product $product)
-{
+  public function show(Product $product)
+  {
     $product->load('inventories');
     $category = $product->product_category;
-    return view('app.products.show', compact('product'));
-}
+    $imagePath = $product->image_path; // Access the image path from the product model
+    return view('app.products.show', compact('product', 'category', 'imagePath')); // Pass imagePath to the view
+  }
+  
 
 
 public function edit(Product $product)

@@ -16,6 +16,7 @@ use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\AuditsController;
+use App\Http\Controllers\QualityStandardsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -142,6 +143,10 @@ Route::get('/audits/{audit}', [AuditsController::class, 'show'])->name('app.audi
 Route::get('/audits/{audit}/edit', [AuditsController::class, 'edit'])->name('app.audits.edit');
 Route::put('/audits/{audit}', [AuditsController::class, 'update'])->name('app.audits.update');
 Route::delete('/audits/{audit}', [AuditsController::class, 'destroy'])->name('app.audits.destroy');
+
+Route::get('/DemandForecasts/quality-standards', [QualityStandardsController::class, 'index'])->name('app.DemandForecasts.quality-standard');
+
+
 //EXIT PPM
 
 // authentication

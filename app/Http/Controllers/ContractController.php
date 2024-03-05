@@ -10,9 +10,16 @@ use Illuminate\Http\Request;
 
 class ContractController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contracts = Contract::with('bidding', 'vendor', 'product')->paginate(10);
+        $search = $request->get('search');
+        $contracts = Contract::with('bidding', 'vendor', 'product')
+            ->when($search, function ($query, $search) {
+                return $query->where('vendor', 'like', '%'.$search.'%')
+                    ->orWhere('product', 'like', '%'.$search.'%')
+                    ->orWhere('status', 'like', '%'.$search.'%');
+            })
+            ->paginate(10);
         return view('app.contracts.index', compact('contracts'));
     }
 

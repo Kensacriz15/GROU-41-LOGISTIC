@@ -20,10 +20,12 @@
           <p><strong>Production Date:</strong> {{ $product->production_date }}</p>
           <p><strong>Expiration Date:</strong> {{ $product->expiration_date }}</p>
           @if ($product->image_path)
-          <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
-     style="max-width: 150px; max-height: 150px; object-fit: cover; border: 2px solid #ccc;">           @else
-            <p>No Image Available</p>
-          @endif
+  <link rel="preload" as="image" href="{{ asset('storage/product_images/' . $imagePath) }}">
+  <img src="{{ asset('storage/product_images/' . $imagePath) }}" alt="{{ $product->name }}"
+       style="max-width: 150px; max-height: 150px; object-fit: cover; border: 2px solid #ccc;">
+@else
+  <p>No Image Available</p>
+@endif
         </div>
       </div>
     </div>

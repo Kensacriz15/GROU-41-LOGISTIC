@@ -7,8 +7,20 @@ use Illuminate\Http\Request;
 
 class BiddingController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
+    $search_term = $request->input('search');
+
+    $biddings = Bidding::with('product');
+
+    if ($search_term) {
+        $biddings = $biddings->where('name', 'LIKE', "%{$search_term}%") 
+                              ->orWhereHas('product', function($query) use ($search_term) {
+                                  $query->where('name', 'LIKE', "%{$search_term}%");
+                              }); 
+    }
+
+    $biddings = $biddings->get();
     $biddings = Bidding::with('product')->get();
     return view('app.biddings.index', compact('biddings'));
   }

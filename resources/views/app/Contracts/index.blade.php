@@ -1,13 +1,20 @@
 @extends('layouts.layoutMaster')
 
 @section('content')
-    <h1>Contracts</h1>
+    <div class="card">
+        <div class="card-header">
+            <h1>Contracts</h1>
+            <form action="{{ route('app.contracts.index') }}" method="GET" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="card-body">
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    <table class="table">
+               <table class="table">
         <thead>
             <tr>
                 <th>Bidding</th>
@@ -37,8 +44,10 @@
             @endforeach
         </tbody>
     </table>
-    <div style="text-align: center; margin: 20px;">
-    <a href="{{ route('app.contracts.create') }}" class="btn btn-primary">Create Contract</a>
+            <div style="text-align: center; margin: 20px;">
+                <a href="{{ route('app.contracts.create') }}" class="btn btn-primary">Create Contract</a>
+            </div>
+            {{ $contracts->links() }} {{-- Display pagination links --}}
+        </div>
     </div>
-    {{ $contracts->links() }} {{-- Display pagination links --}}
 @endsection

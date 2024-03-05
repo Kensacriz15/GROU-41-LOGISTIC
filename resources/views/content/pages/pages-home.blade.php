@@ -3,12 +3,12 @@
 @section('title', 'Unified Procurement Management System')
 
 @section('content')
-<div class="container">
+<div class="container ">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
       <div class="card text-center bg-light mb-4">
         <div class="card-body">
-          <h4 class="card-title">🔥 Procurement 🔥</h4>
+          <h4 class="card-title"> Procurement </h4>
           <div class="row">
             <div class="col-md-4">
               <div class="card text-center h-100 bg-primary">
@@ -48,11 +48,11 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
       <div class="card text-center bg-light mb-4">
         <div class="card-body">
-          <h4 class="card-title">🛒 Purchase 🛒</h4>
-          <div class="row mt-4">
+          <h4 class="card-title"> Purchase </h4>
+          <div class="row mt-3">
             <div class="col-md-4">
               <div class="card text-center h-100 bg-warning">
                 <div class="card-body">
@@ -63,13 +63,23 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <div class="card text-center h-100 bg-danger">
                 <div class="card-body">
                   <i class="fas fa-money-check-alt fa-3x mb-3 text-white"></i>
                   <h5 class="card-title text-white">Payments</h5>
                   <p class="card-text text-white">Track recent payments made for purchase orders.</p>
                   <a href="{{ route('payments.recent') }}" class="btn btn-light rounded-pill">View Payments</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="card text-center h-100 bg-success">
+                <div class="card-body">
+                  <i class="fas fa-file-invoice-dollar fa-3x mb-3 text-white"></i>
+                  <h5 class="card-title text-white">Audits</h5>
+                  <p class="card-text text-white">Stay informed about ongoing or completed audits.</p>
+                  <a href="{{ route('app.audits.index') }}" class="btn btn-light rounded-pill">View Audits</a>
                 </div>
               </div>
             </div>
@@ -83,17 +93,6 @@
                 </div>
               </div>
             </div>
-
-            <div class="col-md-4">
-              <div class="card text-center h-100 bg-success">
-                <div class="card-body">
-                  <i class="fas fa-file-invoice-dollar fa-3x mb-3 text-white"></i>
-                  <h5 class="card-title text-white">Audits</h5>
-                  <p class="card-text text-white">Stay informed about ongoing or completed audits.</p>
-                  <a href="{{ route('app.audits.index') }}" class="btn btn-light rounded-pill">View Audits</a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -104,8 +103,8 @@
     <div class="col-md-12">
       <div class="card text-center bg-light">
         <div class="card-body">
-          <h4 class="card-title">📦 Inventory 📦</h4>
-          <div class="row mt-4">
+          <h4 class="card-title"> Inventory </h4>
+          <div class="row mt-4" >
             <div class="col-md-4">
               <div class="card text-center h-100 bg-info">
                 <div class="card-body">
@@ -133,7 +132,7 @@
                   <i class="fas fa-chart-line fa-3x mb-3 text-white"></i>
                   <h5 class="card-title text-white">Demand Forecasts</h5>
                   <p class="card-text text-white">Get insights into the annual and monthly demand forecasts for different products.</p>
-                  <a href="{{ route('app.products.index') }}" class="btn btn-light rounded-pill">View Demand Forecasts</a>
+                  <a href="{{ route('app.DemandForecasts.quality-standard') }}" class="btn btn-light rounded-pill">View Demand Forecasts</a>
                 </div>
               </div>
             </div>
