@@ -6,6 +6,7 @@ use App\Http\Controllers\pages\HomePage;
 //UNNFIED PPM CONTROLLER
 use App\Http\Controllers\BiddingController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\ContractController;
@@ -52,6 +53,18 @@ Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name
 Route::put('/products/{product}', [ProductController::class, 'update'])->name('app.products.update');
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('app.products.destroy');
 
+Route::resource('/product_categories', ProductCategoryController::class);
+Route::get('/product_categories', [ProductCategoryController::class, 'index'])->name('app.product_categories.index');
+Route::get('/product_categories/create', [ProductCategoryController::class, 'create'])->name('app.product_categories.create');
+Route::post('/product_categories', [ProductCategoryController::class, 'store'])->name('app.product_categories.store');
+Route::get('/product_categories/{productcategory}', [ProductCategoryController::class, 'show'])->name('app.product_categories.show');
+Route::get('product_categories/{productcategory}/edit', [ProductCategoryController::class, 'edit'])->name('app.product_categories.edit');
+Route::put('/product_categories/{productcategory}', [ProductCategoryController::class, 'update'])->name('app.product_categories.update');
+Route::delete('/product_categories/{productcategory}', [ProductCategoryController::class, 'destroy'])->name('app.product_categories.destroy');
+
+Route::get('/bids/{bid}/make-winner', [BidController::class, 'makeWinner'])->name('app.bids.makeWinner');
+Route::get('/bids/winning-bids', [BidController::class, 'showWinningBids'])->name('app.bids.winningBids');
+Route::post('/bids/create-line-items', [BidController::class, 'createLineItems'])->name('app.bids.createLineItems');
 Route::resource('bids', BidController::class);
 Route::get('/bids', [BidController::class, 'index'])->name('app.bids.index');
 Route::get('/bids/create', [BidController::class, 'create'])->name('app.bids.create');
@@ -110,6 +123,8 @@ Route::get('/payments/recent', [PaymentsController::class, 'showRecentPayments']
 Route::get('/payments/demo', function () {return view('app.payments.demo');});
 Route::post('/payments/update-payment', [PaymentsController::class, 'updatePayment']);
 
+Route::get('/invoices/preview', [InvoicesController::class, 'showTemplate'])->name('app.invoices.invoice_preview');
+Route::get('/invoices/generate_pdf/{invoice}', [InvoicesController::class, 'generateInvoicePDF'])->name('app.invoices.generatePDF');
 Route::resource('invoices', InvoicesController::class);
 Route::get('/invoices', [InvoicesController::class, 'index'])->name('app.invoices.index');
 Route::get('/invoices/create', [InvoicesController::class, 'create'])->name('app.invoices.create');

@@ -13,14 +13,14 @@ class CreateInvoicesTable extends Migration
    */
   public function up()
   {
-    Schema::create('invoices', function (Blueprint $table) {
-      $table->id();
-      $table->unsignedBigInteger('vendor_id');
-      $table->unsignedBigInteger('purchase_order_id');
-      $table->decimal('amount', 10, 2);
-      $table->dateTime('invoice_date');
-      $table->dateTime('due_date');
-      $table->timestamps();
+      Schema::create('invoices', function (Blueprint $table) {
+          $table->id();
+          $table->unsignedBigInteger('vendor_id');
+          $table->unsignedBigInteger('purchase_order_id');
+          $table->decimal('amount', 10, 2)->default(0);
+          $table->dateTime('invoice_date');
+          $table->dateTime('due_date');
+          $table->timestamps();
 
       $table
         ->foreign('vendor_id')

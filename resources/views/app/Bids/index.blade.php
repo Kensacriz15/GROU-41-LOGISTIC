@@ -25,6 +25,7 @@
                     <td>{{ $bid->price }}</td>
                     <td>{{ $bid->delivery_time }} days</td>
                     <td>
+                    <a href="{{ route('app.bids.makeWinner', $bid->id) }}" class="btn btn-sm btn-success" onclick="return confirm('Are you sure you want to mark this bid as a winner?')">Make Winner</a>
                         <a href="{{ route('app.bids.show', $bid) }}"class="btn btn-sm btn-primary">View</a>
                         <a href="{{ route('app.bids.edit', $bid) }}"class="btn btn-sm btn-secondary">Edit</a>
                         <form action="{{ route('app.bids.destroy', $bid->id) }}" method="POST" class="d-inline">

@@ -49,7 +49,34 @@
             <label for="due_date">Due Date:</label>
             <input type="date" name="due_date" class="form-control" value="{{ old('due_date') }}">
         </div>
+        <div class="form-group">
+    <label for="discount">Discount (%):</label>
+    <input type="number" step="0.01" name="discount" class="form-control" value="{{ old('discount') }}">
+</div>
 
+<div class="form-group">
+    <label for="total_due">Total Due:</label>
+    <input type="number" step="0.01" name="total_due" class="form-control" value="{{ old('total_due') }}">
+</div>
+
+<div class="form-group">
+    <label for="bank_name">Bank Name:</label>
+    <input type="text" name="bank_name" class="form-control" value="{{ old('bank_name') }}">
+</div>
+<div class="form-group">
+    <label for="country">Country:</label>
+    <input type="text" name="country" class="form-control" value="{{ old('country') }}">
+</div>
+
+<div class="form-group">
+    <label for="iban">IBAN:</label>
+    <input type="text" name="iban" class="form-control" value="{{ old('iban') }}">
+</div>
+
+<div class="form-group">
+    <label for="swift_code">SWIFT Code:</label>
+    <input type="text" name="swift_code" class="form-control" value="{{ old('swift_code') }}">
+</div>
         <button type="submit" class="btn btn-primary">Create Invoice</button>
     </form>
 @endsection

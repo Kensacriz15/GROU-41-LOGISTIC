@@ -5,12 +5,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductCategory;
 
 class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'unit_price'];
+    protected $fillable = ['name', 'product_category_id','description', 'production_date', 'expiration_date','unit_price', 'image_path'];
 
     public function biddings()
     {
@@ -48,8 +49,17 @@ class Product extends Model
             ->using(ProductInventory::class)
             ->withPivot('quantity', 'reorder_level');
     }
-    public function scopePublicProducts($query)
+public function getImageUrlAttribute()
 {
-    return $query->where('public', true);
+    if ($this->image_path) {
+        return asset('storage/product_images/' . $this->image_path); // Return the actual image path
+    } else {
+        return asset('storage/product_images/default.jpg'); // Placeholder if no image was uploaded
+    }
+}
+public function product_category()
+{
+    return $this->belongsTo(ProductCategory::class);
 }
 }
+

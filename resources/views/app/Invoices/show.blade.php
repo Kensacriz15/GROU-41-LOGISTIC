@@ -8,6 +8,11 @@
     <p><strong>Amount:</strong> ${{ $invoice->amount }}</p>
     <p><strong>Invoice Date:</strong> {{ $invoice->invoice_date->format('Y-m-d') }}</p>
     <p><strong>Due Date:</strong> {{ $invoice->due_date->format('Y-m-d') }}</p>
-
+    <p><strong>Discount:</strong> {{ $invoice->discount }}%</p>
+    <p><strong>Total Due:</strong> ${{ $invoice->total_due }}</p>
+    <p><strong>Bank Name:</strong> {{ $invoice->bank_name }}</p>
+    <p><strong>Country:</strong> {{ $invoice->country ?? 'N/A' }}</p>
+    <p><strong>IBAN:</strong> {{ $invoice->iban ?? 'N/A' }}</p>
+    <p><strong>SWIFT Code:</strong> {{ $invoice->swift_code ?? 'N/A' }}</p>
     {{-- Add more details if needed --}}
 @endsection

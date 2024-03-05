@@ -2,22 +2,25 @@
 
 @section('content')
     <h1>Bidding Details</h1>
-    <table class="table mt-3">
-        <tr>
-            <th>ID</th>
-            <td>{{ $bidding->id }}</td>
-        </tr>
-        <tr>
-            <th>Product</th>
-            <td>{{ $bidding->product->name }}</td>
-        </tr>
-        <tr>
-            <th>Start Date</th>
-            <td>{{ $bidding->start_date }}</td>
-        </tr>
-        <tr>
-            <th>End Date</th>
-            <td>{{ $bidding->end_date }}</td>
-        </tr>
-    </table>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">ID: {{ $bidding->id }}</h5>
+
+            <div class="row">
+                <div class="col-md-4">
+                    @if ($bidding->product->image_path)
+                        <img src="{{ asset('storage/product_images/' . $bidding->product->image_path) }}" alt="{{ $bidding->product->name }}" class="img-fluid">
+                    @else
+                        <p>No Image Available</p>
+                    @endif
+                </div>
+                <div class="col-md-8">
+                    <p><strong>Product:</strong> {{ $bidding->product->name }}</p>
+                    <p><strong>Start Date:</strong> {{ $bidding->start_date }}</p>
+                    <p><strong>End Date:</strong> {{ $bidding->end_date }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
