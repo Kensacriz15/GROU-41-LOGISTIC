@@ -114,7 +114,6 @@ Route::get('/product_inventories/{productinventory}', [ProductInventoryControlle
 Route::get('/product_inventories/{productInventory}/edit', [ProductInventoryController::class, 'edit'])->name('app.product_inventories.edit');
 Route::put('/product_inventories/{productinventory}', [ProductInventoryController::class, 'update'])->name('app.product_inventories.update');
 Route::delete('/product_inventories/{productinventory}', [ProductInventoryController::class, 'destroy'])->name('app.product_inventories.destroy');
-Route::get('/product-inventories/{productInventory}', [ProductInventoryController::class, 'show']);
 
 Route::resource('purchase_orders', PurchaseOrderController::class);
 Route::get('/purchase_orders', [PurchaseOrderController::class, 'index'])->name('app.purchase_orders.index');
@@ -129,7 +128,7 @@ Route::get('/payments/demo', function () {return view('app.payments.demo');});
 Route::post('/payments/update-payment', [PaymentsController::class, 'updatePayment']);
 
 Route::get('/invoices/preview', [InvoicesController::class, 'showTemplate'])->name('app.invoices.invoice_preview');
-Route::get('/invoices/generate_pdf/{invoice}', [InvoicesController::class, 'generateInvoicePDF'])->name('app.invoices.generatePDF');
+Route::get('/invoices/{invoice}/pdf', [InvoicesController::class, 'generateInvoicePDF'])->name('app.invoices.pdf');
 Route::resource('invoices', InvoicesController::class);
 Route::get('/invoices', [InvoicesController::class, 'index'])->name('app.invoices.index');
 Route::get('/invoices/create', [InvoicesController::class, 'create'])->name('app.invoices.create');

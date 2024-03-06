@@ -18,8 +18,8 @@
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
             </form>
-
-            <table class="table">
+            <div class="table-responsive">
+    <table class="table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -47,14 +47,15 @@
                             <td>{{ $invoice->iban ?? 'N/A' }}</td>
                             <td>{{ $invoice->swift_code ?? 'N/A' }}</td>
                             <td>
-                                <a href="{{ route('app.invoices.show', $invoice) }}">View</a>
-                                <a href="{{ route('app.invoices.edit', $invoice) }}">Edit</a>
-                                <a href="{{ route('app.invoices.generatePDF', ['invoice' => $invoice->id]) }}" class="btn btn-primary">Generate PDF</a>
+                                <a href="{{ route('app.invoices.show', $invoice) }}"class="btn btn-sm btn-primary">View</a>
+                                <a href="{{ route('app.invoices.edit', $invoice) }}" class="btn btn-sm btn-secondary">Edit</a>
+<a href="{{ route('app.invoices.pdf', ['invoice' => $invoice->id]) }}" class="btn btn-sm btn-success">Generate PDF</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+</div>
             <div style="text-align: center; margin: 20px;">
                 <a href="{{ route('app.invoices.create') }}" class="btn btn-primary">Create New Invoices</a>
             </div>

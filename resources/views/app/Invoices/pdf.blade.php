@@ -23,6 +23,9 @@
 @endsection
 
 @section('content')
+<a class="btn btn-label-secondary d-grid w-100 mb-2" target="_blank" href="{{ route('app.invoices.pdf', $invoice->id) }}">
+    Print
+</a>
 
 <div class="row invoice-preview">
   <!-- Invoice -->
@@ -166,6 +169,7 @@
   </div>
   <!-- /Invoice Actions -->
 </div>
+
 
 <!-- Offcanvas -->
 

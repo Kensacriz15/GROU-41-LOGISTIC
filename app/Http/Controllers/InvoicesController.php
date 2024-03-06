@@ -179,24 +179,21 @@ class InvoicesController extends Controller
         return view('app.invoices.invoice_preview', compact('invoice'));
     }
 
-    public function generateInvoicePDF(Request $request, Invoice $invoice)
+    public function generateInvoicePDF(Invoice $invoice)
     {
-        // 1. Load Invoice Data
-        $invoice->load('vendor', 'lineItems.product'); // Adjust relationships as needed
+        $invoice->load('vendor', 'lineItems');
 
-        $pdf = \PDF::loadView('app.invoices.invoice_preview', compact('invoice'));
-        $pdfWrapper = $pdf->output();
+        // Render the Blade view with the data
+        $html = view('app.invoices.pdf', compact('invoice'))->render();
 
+        // Create a PDF instance
+        $pdf = new Dompdf();
+        $pdf->loadHtml($html);
 
-        // 4. Prepare Email
-        $emailData = [
-            'emailTo' => $invoice->vendor->email,
-            'subject' => 'Invoice #' . $invoice->id . ' from ' . config('variables.templateName'),
-        ];
+        // Optional: Set paper size, orientation, etc.
+        $pdf->setPaper('A4', 'portrait');
 
-        // 5. Send Email with PDF Attachment
-        \Mail::send(new InvoiceEmail($pdfWrapper, $emailData));
-
-        return redirect()->back()->with('success', 'Invoice PDF generated and emailed.');
+        // Render and return the PDF
+        return $pdf->stream('invoice.pdf');
     }
   }

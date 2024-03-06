@@ -72,7 +72,7 @@ class Invoice extends Model
     /**
      * Boot the model (for adding validation, observers, etc.)
      */
-    protected static function booted()
+    public function validate()
     {
         static::creating(function ($invoice) {
             $invoice->invoice_number = 'INV-' . str_pad($invoice->id, 8, '0', STR_PAD_LEFT); // Auto-generate invoice number
