@@ -171,6 +171,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
     App\Providers\MenuServiceProvider::class,
+    Barryvdh\DomPDF\ServiceProvider::class,
   ])->toArray(),
 
   /*
@@ -187,6 +188,7 @@ return [
   'aliases' => Facade::defaultAliases()->merge([
     // 'Example' => App\Facades\Example::class,
     'Helper' => App\Helpers\Helpers::class,
+    'PDF' => Barryvdh\DomPDF\Facade::class,
   ])->toArray(),
 
 ];

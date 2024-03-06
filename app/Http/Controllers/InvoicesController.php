@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 require_once(base_path('app/Helpers/PdfWrapper.php'));
 
-
+use PDF;
 use App\Helpers\PdfWrapper;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -181,19 +181,31 @@ class InvoicesController extends Controller
 
     public function generateInvoicePDF(Invoice $invoice)
     {
-        $invoice->load('vendor', 'lineItems');
+        $invoice->load('vendor', 'lineItems.product'); // Eager load related data
 
-        // Render the Blade view with the data
-        $html = view('app.invoices.pdf', compact('invoice'))->render();
+        $pdf = PDF::loadView('app.invoices.pdf', compact('invoice'));
 
-        // Create a PDF instance
-        $pdf = new Dompdf();
-        $pdf->loadHtml($html);
-
-        // Optional: Set paper size, orientation, etc.
-        $pdf->setPaper('A4', 'portrait');
-
-        // Render and return the PDF
-        return $pdf->stream('invoice.pdf');
+        return $pdf->stream('invoice.pdf'); // Or use $pdf->download('invoice.pdf');
     }
+    public function storeLineItems(Request $request, Invoice $invoice)
+{
+    // Validate line item data (adjust as needed)
+    $validatedData = $request->validate([
+        'line_items.*.product_id' => 'required|exists:products,id',
+        'line_items.*.quantity'   => 'required|integer|min:1',
+        'line_items.*.price'      => 'required|numeric|min:0',
+        // ... add validation for 'description' if applicable
+    ]);
+
+    // Store/Update line items
+    foreach ($validatedData['line_items'] as $itemData) {
+        $lineItem = $invoice->lineItems()->updateOrCreate(
+            ['product_id' => $itemData['product_id']], // Identify if the line item exists
+            $itemData
+        );
+    }
+
+    // ... other logic, perhaps a redirect:
+    return redirect()->back()->with('success', 'Line items updated!');
+}
   }
