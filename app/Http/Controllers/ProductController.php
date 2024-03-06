@@ -8,9 +8,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    $products = Product::with('product_category')->get();
+      $search = $request->input('search');
+
+      $products = Product::with('product_category')
+                          ->where('name', 'LIKE', "%$search%")
+                          ->orWhere('description', 'LIKE', "%$search%")
+                          ->get();
+
     return view('app.products.index', compact('products'));
   }
 
@@ -71,7 +77,7 @@ class ProductController extends Controller
     $imagePath = $product->image_path; // Access the image path from the product model
     return view('app.products.show', compact('product', 'category', 'imagePath')); // Pass imagePath to the view
   }
-  
+
 
 
 public function edit(Product $product)

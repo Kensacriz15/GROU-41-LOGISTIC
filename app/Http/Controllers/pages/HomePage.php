@@ -11,6 +11,11 @@ class HomePage extends Controller
 {
   public function index()
   {
-    return view('content.pages.pages-home');
+      if (auth()->guest()) {
+          return redirect()->route('login');
+      }
+
+      return view('content.pages.pages-home');
   }
 }
+

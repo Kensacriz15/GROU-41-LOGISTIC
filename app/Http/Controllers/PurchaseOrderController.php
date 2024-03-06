@@ -9,11 +9,16 @@ use Illuminate\Support\Facades\Validator;
 
 class PurchaseOrderController extends Controller
 {
-    public function index()
-    {
-        $purchaseOrders = PurchaseOrder::with('contract')->paginate(10);
-        return view('app.purchase_orders.index', compact('purchaseOrders'));
-    }
+  public function index(Request $request)
+  {
+      $search = $request->input('search');
+
+      $purchaseOrders = PurchaseOrder::with('contract')
+          ->where('id', 'LIKE', "%$search%")
+          ->paginate(10);
+
+      return view('app.purchase_orders.index', compact('purchaseOrders'));
+  }
 
     public function create()
     {

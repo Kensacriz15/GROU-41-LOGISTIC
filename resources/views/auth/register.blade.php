@@ -31,12 +31,13 @@ $configData = Helper::appClasses();
         <!-- Logo -->
         <div class="app-brand mb-4">
           <a href="{{url('/')}}" class="app-brand-link gap-2">
-            <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
-          </a>
+          <span class="mt-4"><img src="{{ asset('assets\img\favicon\bbox-express-logo.png') }}" alt="logo" width="40" height="40"  style="margin-top: -25px;"/></span>
+          <h3 class="mb-1">BBOX EXPRESS</h3>
+        </a>
         </div>
         <!-- /Logo -->
-        <h3 class="mb-1">Adventure starts here 🚀</h3>
-        <p class="mb-4">Make your app management easy and fun!</p>
+
+        <p class="mb-4">Create an account</p>
 
         <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST">
           @csrf

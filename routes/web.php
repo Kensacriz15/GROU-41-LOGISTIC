@@ -17,6 +17,8 @@ use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\AuditsController;
 use App\Http\Controllers\QualityStandardsController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +31,8 @@ use App\Http\Controllers\QualityStandardsController;
 */
 
 // Main Page Route
+
+
 Route::get('/', [HomePage::class, 'index'])->name('pages-home');
 
 // locale
@@ -120,7 +124,7 @@ Route::get('/purchase_orders/{purchaseOrder}', [PurchaseOrderController::class, 
 Route::get('/purchase_orders/{purchaseOrder}/edit', [PurchaseOrderController::class, 'edit'])->name('app.purchase_orders.edit');
 Route::put('/purchase_orders/{purchaseOrder}', [PurchaseOrderController::class, 'update'])->name('app.purchase_orders.update');
 Route::delete('/purchase_orders/{purchaseOrder}', [PurchaseOrderController::class, 'destroy'])->name('app.purchase_orders.destroy');
-Route::get('/payments/recent', [PaymentsController::class, 'showRecentPayments'])->name('payments.recent');
+Route::get('/payments/recent', [PaymentsController::class, 'showRecentPayments'])->name('app.payments.recent');
 Route::get('/payments/demo', function () {return view('app.payments.demo');});
 Route::post('/payments/update-payment', [PaymentsController::class, 'updatePayment']);
 
@@ -161,3 +165,14 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Route::resources([
+  'roles' => RoleController::class,
+  'users' => UserController::class,
+]);
+
+
+
+  // ... other procurement routes
+

@@ -10,11 +10,18 @@ use Illuminate\Support\Facades\Validator;
 class AuditsController extends Controller
 {
 
-    public function index()
-    {
-        $audits = Audit::with('purchaseOrder')->paginate(10);
-        return view('app.audits.index', compact('audits'));
-    }
+  public function index(Request $request)
+  {
+      $search = $request->input('search');
+
+      $audits = Audit::with('purchaseOrder')
+          ->when($search, function ($query) use ($search) {
+              return $query->where('id', 'LIKE', "%$search%");
+          })
+          ->paginate(10);
+
+      return view('app.audits.index', compact('audits'));
+  }
 
     public function create()
     {

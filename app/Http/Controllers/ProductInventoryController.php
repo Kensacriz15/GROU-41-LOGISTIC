@@ -9,9 +9,19 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductInventoryController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-      $productInventories = Product::with('inventories')->get();
+      $search = $request->input('search');
+      $query = Product::query();
+
+      if ($search) {
+          $query->whereHas('inventories', function ($q) use ($search) {
+              $q->where('name', 'like', "%$search%");
+          });
+      }
+
+      $productInventories = $query->with('inventories')->get();
+
       return view('app.product_inventories.index', compact('productInventories'));
   }
 

@@ -31,7 +31,7 @@ $configData = Helper::appClasses();
         <!-- Logo -->
         <div class="app-brand mb-4">
           <a href="{{url('/')}}" class="app-brand-link">
-            <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
+          <span class="mt-4"><img src="{{ asset('assets\img\favicon\bbox-express-logo.png') }}" alt="logo" width="40" height="40"  style="margin-top: -25px;"/></span>
           </a>
         </div>
         <!-- /Logo -->

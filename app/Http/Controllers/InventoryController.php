@@ -10,11 +10,23 @@ class InventoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-{
-    $inventories = Inventory::paginate(10);  // Example: Paginate with 10 items per page
-    return view('app.inventories.index', compact('inventories'));
-}
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+        $query = Inventory::query();
+
+        if ($search) {
+            $query->where('name', 'like', "%$search%")
+                  ->orWhere('description', 'like', "%$search%")
+                  ->orWhere('address', 'like', "%$search%")
+                  ->orWhere('contact_person', 'like', "%$search%")
+                  ->orWhere('type', 'like', "%$search%");
+        }
+
+        $inventories = $query->paginate(10);  // Example: Paginate with 10 items per page
+
+        return view('app.inventories.index', compact('inventories'));
+    }
 
     /**
      * Show the form for creating a new resource.

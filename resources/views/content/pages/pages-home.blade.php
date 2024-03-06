@@ -69,7 +69,7 @@
                   <i class="fas fa-money-check-alt fa-3x mb-3 text-white"></i>
                   <h5 class="card-title text-white">Payments</h5>
                   <p class="card-text text-white">Track recent payments made for purchase orders.</p>
-                  <a href="{{ route('payments.recent') }}" class="btn btn-light rounded-pill">View Payments</a>
+                  <a href="{{ route('app.payments.recent') }}" class="btn btn-light rounded-pill">View Payments</a>
                 </div>
               </div>
             </div>

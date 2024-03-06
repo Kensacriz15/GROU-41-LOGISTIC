@@ -1,16 +1,16 @@
 @extends('layouts/layoutMaster')
 
 @section('content')
-  <div class="card"> 
+  <div class="card">
     <div class="card-header">
       <h1>Public Biddings</h1>
     </div>
     <div class="card-body">
-      <div class="input-group mb-3"> 
+      <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search biddings..." id="biddingSearch">
         <button class="btn btn-primary" type="button">Search</button>
       </div>
-
+      <div class="table-responsive">
       <table class="table mt-3">
         <thead>
           <tr>
@@ -41,6 +41,7 @@
         @endforeach
         </tbody>
       </table>
+</div>
 
       <div style="text-align: center; margin: 20px;">
         <a href="{{ route('app.biddings.create') }}" class="btn btn-primary">Create Bidding</a>
